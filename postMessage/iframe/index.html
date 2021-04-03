@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test postMessage</title>
+  <style>
+    body {
+      height: 600px;
+      background-color: #baf;
+    }
+
+    iframe {
+      min-height: 200px;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>Í
+  父级页面 http://localhost:3000
+  <div>
+    <input type="text" id="input" autocomplete="off">
+    <button onclick="send()">给子级发消息</button>
+  </div>
+  <iframe src="//localhost:3001" frameborder="0"></iframe>
+  <p>来自子级的消息</p>
+  <ul id="messages"></ul>
+
+  <script>
+    window.addEventListener('message', function (e) {
+      var li = document.createElement('li')
+      li.innerText = `来自: ${e.origin}    消息内容: ${e.data}`
+      document.getElementById('messages').appendChild(li)
+    })
+
+    function send() {
+      document.querySelector('iframe').contentWindow.postMessage(
+        document.querySelector('#input').value,
+        "*"
+      )
+    }
+  </script>
+</body>
+
+</html>

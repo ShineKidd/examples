@@ -1,0 +1,11 @@
+{
+  "name": "postmessage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve-iframe": "serve iframe -p 3000 & serve iframe/nested -p 3001"
+  },
+  "author": "",
+  "license": "ISC"
+}
